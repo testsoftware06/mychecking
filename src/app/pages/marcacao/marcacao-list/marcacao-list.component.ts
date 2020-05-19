@@ -26,17 +26,12 @@ export class MarcacaoListComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private marcacaoService: MarcacaoService) { }
+  constructor(private marcacaoService: MarcacaoService) {
+    moment.locale('pt-br');
+  }
 
   ngOnInit() {
 
-  }
-
-  swap32(val) {
-    return ((val & 0xFF) << 24)
-           | ((val & 0xFF00) << 8)
-           | ((val >> 8) & 0xFF00)
-           | ((val >> 24) & 0xFF);
   }
 
 
@@ -44,10 +39,12 @@ export class MarcacaoListComponent implements OnInit {
 
     const marcacao = new Marcacao();
 
-    marcacao.from = moment(this.from).format('DD/MM/YYYY HH:mm:ss.SSS');
-    marcacao.to = moment(this.to).format('DD/MM/YYYY HH:mm:ss.SSS');
+    marcacao.from = moment(this.from).format('DD/MM/YYYY 00:00:00');
+    marcacao.to = moment(this.to).format('DD/MM/YYYY 23:59:59');
 
     console.log(marcacao);
+
+    this.achou = false;
 
     this.marcacaoService.getAll(marcacao).subscribe(
       (dados) => {

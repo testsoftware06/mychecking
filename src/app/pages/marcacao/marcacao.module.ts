@@ -8,11 +8,13 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { TagFormat } from './tag-format-pipe';
 
 
 @NgModule({
   declarations: [
-    MarcacaoListComponent
+    MarcacaoListComponent,
+    TagFormat
   ],
   exports: [
     MarcacaoListComponent

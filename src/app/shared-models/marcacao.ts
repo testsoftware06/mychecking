@@ -1,6 +1,6 @@
 export class Marcacao {
   codigo?: string;
-  datahora?: string;
+  datahora?: Date;
   valor?: string;
   pessoa?: string;
   from?: string;
