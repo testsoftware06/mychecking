@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Marcacao } from '../../../shared-models/marcacao';
-import { MarcacaoService } from '../marcacao.service';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import * as moment from 'moment';
+
+import { MarcacaoService } from '../marcacao.service';
+import { Marcacao } from '../../../shared-models/marcacao';
+import { FileService } from '../file.service';
+
 
 @Component({
   selector: 'app-marcacao-list',
@@ -12,6 +15,8 @@ import * as moment from 'moment';
 export class MarcacaoListComponent implements OnInit {
 
   marcacoes: Marcacao[];
+
+  fileExcel = [];
 
   tag: Marcacao;
 
@@ -26,7 +31,10 @@ export class MarcacaoListComponent implements OnInit {
 
   p: number = 1;
 
-  constructor(private marcacaoService: MarcacaoService) {
+  constructor(
+    private marcacaoService: MarcacaoService,
+    private fileService: FileService
+    ) {
     moment.locale('pt-br');
   }
 
@@ -48,11 +56,24 @@ export class MarcacaoListComponent implements OnInit {
 
     this.marcacaoService.getAll(marcacao).subscribe(
       (dados) => {
-          if( dados.length > 0 ) {
+          if ( dados.length > 0 ) {
             this.marcacoes = dados;
             this.achou = true;
           }
       }
     );
   }
+
+  exportAsXLSX():void {
+    const json = this.marcacoes.map( ( item ) => {
+      return {
+        tag:  parseInt('0x'+item.valor.match(/../g).reverse().join('')),
+        datahora: moment(item.datahora).format('DD/MM/YYYY HH:mm:ss'),
+        registro: item.codigo
+      }
+    });
+    this.fileService.exportAsExcelFile(json, 'registros');
+ }
+
+
 }
