@@ -1,7 +1,7 @@
 export class Marcacao {
   codigo?: string;
   datahora?: string;
-  tag?: string;
+  valor?: string;
   pessoa?: string;
   from?: string;
   to?: string;

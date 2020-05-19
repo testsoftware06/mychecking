@@ -13,6 +13,8 @@ export class MarcacaoListComponent implements OnInit {
 
   marcacoes: Marcacao[];
 
+  tag: Marcacao;
+
   achou = false;
 
   from: Date;
@@ -30,6 +32,14 @@ export class MarcacaoListComponent implements OnInit {
 
   }
 
+  swap32(val) {
+    return ((val & 0xFF) << 24)
+           | ((val & 0xFF00) << 8)
+           | ((val >> 8) & 0xFF00)
+           | ((val >> 24) & 0xFF);
+  }
+
+
   getTag() {
 
     const marcacao = new Marcacao();
@@ -41,8 +51,8 @@ export class MarcacaoListComponent implements OnInit {
 
     this.marcacaoService.getAll(marcacao).subscribe(
       (dados) => {
-        this.marcacoes = dados;
-          if( this.marcacoes.length > 0 ) {
+          if( dados.length > 0 ) {
+            this.marcacoes = dados;
             this.achou = true;
           }
       }
