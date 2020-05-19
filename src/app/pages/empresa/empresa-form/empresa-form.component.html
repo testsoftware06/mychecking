@@ -1,0 +1,32 @@
+<h1>Formulário de Empresas</h1>
+
+<div *ngIf="erro">
+  <app-alert tipo="danger" mensagem="Falha ao cadastrar"></app-alert>
+</div>
+
+<div *ngIf="sucesso">
+  <app-alert tipo="success" mensagem="Cadastrado com sucesso"></app-alert>
+</div>
+
+<form [formGroup]="formularioDeEmpresa" (ngSubmit)="enviarDados()">
+  <div class="form-group">
+    <label for="razaoSocial">Razão Social</label>
+    <input type="razaoSocial" class="form-control" id="razaoSocial" formControlName="razaoSocial">
+  </div>
+  <div class="form-group">
+    <label for="cnpj">CNPJ</label>
+    <input type="cnpj" class="form-control" id="cnpj" formControlName="cnpj">
+  </div>
+  <div class="form-group">
+    <label for="administrador">Administrador da Empresa</label>
+    <input type="email" class="form-control" id="administrador" formControlName="administrador" placeholder="email@email.com.br">
+  </div>
+  <button [disabled]="!formularioDeEmpresa.valid" type="submit" class="btn btn-lg btn-primary btn-block">Salvar</button>
+  <hr class="my-4">
+</form>
+
+<div class="text-center" *ngIf="spinner">
+  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+  Aguarde...
+</div>
+

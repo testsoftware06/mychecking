@@ -1,0 +1,34 @@
+<h1>Empresas</h1>
+<input class="form-control" type="text" placeholder="Pesquise" name="search" [(ngModel)]="filter">
+<button class="btn btn-success mt-3 mb-4" routerLink="/empresas/empresa">+Novo</button>
+<div class="table-responsive">
+  <table class="table table-bordered table-condensed">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Razão Social</th>
+          <th scope="col">CNPJ</th>
+          <th scope="col">Administrador</th>
+          <th scope="col">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let empresa of empresas | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }" >
+          <th scope="row">{{ empresa.codigo }}</th>
+          <td>{{ empresa.razaoSocial }}</td>
+          <td>{{ empresa.cnpj }}</td>
+          <td>{{ empresa.administrador }}</td>
+          <td align="center">
+            <button (click)="edit(empresa)" class="btn btn-primary">Editar</button>
+            <button (click)="excluir(empresa)" class="btn btn-danger">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="...">
+      <ul class="pagination justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </ul>
+    </nav>
+  </div>
+  <br><br>

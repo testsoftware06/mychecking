@@ -1,0 +1,57 @@
+<h1>Checking Tag</h1>
+<br>
+<h3>Selecione o período inicial e final</h3>
+<div class="row">
+  <div class="col-md-6">
+    <dl-date-time-picker
+    startView="day"
+    maxView="month"
+    minView="day"
+    [(ngModel)]="from"
+    >
+    </dl-date-time-picker>
+  </div>
+
+  <div class="col-md-6">
+    <dl-date-time-picker
+    startView="day"
+    maxView="month"
+    minView="day"
+    [(ngModel)]="to"
+    >
+    </dl-date-time-picker>
+  </div>
+</div>
+
+<button class="btn btn-success mb-4" (click)="getTag()">Pesquisar</button>
+
+<br>
+
+<div class="mb-4" *ngIf="achou">
+  <input class="form-control" type="text" placeholder="Digite algo para pesquisar" name="search" [(ngModel)]="filter">
+</div>
+
+<div class="table-responsive">
+  <table class="table table-bordered table-condensed">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Código</th>
+          <th scope="col">Data Hora</th>
+          <th scope="col">Tag</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let marcacao of marcacoes | filter:filter | paginate: { itemsPerPage: 10, currentPage: p }" >
+          <th scope="row">{{ marcacao.codigo }}</th>
+          <td>{{ marcacao.datahora }}</td>
+          <td>{{ marcacao.valor }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <nav aria-label="...">
+      <ul class="pagination justify-content-center">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
+      </ul>
+    </nav>
+  </div>
+  <br><br>

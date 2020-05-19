@@ -1,0 +1,31 @@
+<h1>Usuários</h1>
+<input class="form-control" type="text" placeholder="Pesquise" name="search" [(ngModel)]="filter">
+<div class="table-responsive mt-4">
+  <table class="table table-bordered table-condensed">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Código</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Login</th>
+        <th scope="col">Ação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios | filter:filter">
+        <th scope="row">{{ usuario.codigo }}</th>
+        <td>{{ usuario.nome }}</td>
+        <td>{{ usuario.login }}</td>
+        <td align="center">
+          <button (click)="editar(usuario)" class="btn btn-primary">Editar</button>
+          <button (click)="excluir(usuario)" class="btn btn-danger">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <nav aria-label="...">
+    <ul class="pagination justify-content-center">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </ul>
+  </nav>
+</div>
+<br><br>
