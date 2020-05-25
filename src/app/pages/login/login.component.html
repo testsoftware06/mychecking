@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div class="card card-signin my-5">
+      <div class="card-body">
+        <h5 class="card-title text-center mb-3">Entrar</h5>
+        <form [formGroup]="formLogin" (ngSubmit)="enviarDados()">
+          <div class="form-label-group">
+            <input type="text" id="login" formControlName="login" class="form-control" placeholder="E-mail">
+          </div>
+          <br>
+          <div class="form-label-group">
+            <input type="password" id="password" formControlName="password" class="form-control" placeholder="Senha">
+          </div>
+           <br>
+          <button [disabled]="!formLogin.valid" type="submit" class="btn btn-lg btn-primary btn-block">Logar</button>
+
+          <button type="button" data-toggle="modal" data-target="#modalesqueceusenha" class="btn btn-lg btn-link btn-block">Esqueci a senha</button>
+
+          <hr class="my-4">
+          <div *ngIf="erro">
+            <app-alert tipo="danger" mensagem="Falha ao fazer login"></app-alert>
+          </div>
+
+            <div class="text-center" *ngIf="spinner">
+              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+              Aguarde...
+            </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--INICIO MODAL ESQUECI SENHA -->
+<div>
+  <div class="modal fade" id="modalesqueceusenha" tabindex="-1" role="dialog" aria-labelledby="modalEsqueciSenha" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="modalEsqueciSenha">Esqueceu a Senha?</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <b>Insira seu e-mail para possamos te ajudar :)</b>
+                  <br>
+                  <br>
+                  <input type="text" class="form-control" placeholder="E-mail" [(ngModel)]="login" />
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" #modal data-dismiss="modal">Cancelar</button>
+                  <button type="button" class="btn btn-primary" (click)="esqueciSenha()">Enviar</button>
+              </div>
+
+              <div *ngIf="statusEsqueceuSenhaErro">
+                  <app-alert tipo="danger" mensagem="Falha ao enviar e-mail, tente novamente"></app-alert>
+              </div>
+
+              <div *ngIf="statusEsqueceuSenhaSucesso">
+                  <app-alert tipo="success" mensagem="E-mail enviado com sucesso"></app-alert>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div>
+<!-- FIM MODAL ESQUECE SENHA -->

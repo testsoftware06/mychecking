@@ -1,15 +1,15 @@
-import { Component, OnInit, Output, ViewChild } from "@angular/core";
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
-import { AuthService } from "./shared-services/auth.service";
-import { Usuario } from "./shared-models/usuario";
+import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/shared-services/auth.service';
 import { Router } from '@angular/router';
+import { Usuario } from 'src/app/shared-models/usuario';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class AppComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   formLogin: FormGroup;
   formUsuarioNovo: FormGroup;
@@ -42,13 +42,8 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
-    if (localStorage.getItem('token') == null) {
-      this.router.navigate(['/login']);
-    }
-
-   // this.criarFormularioLogin();
-   // this.criarFormularioUsuarioNovo();
+    this.criarFormularioLogin();
+    this.criarFormularioUsuarioNovo();
   }
 
   criarFormularioLogin() {
@@ -72,7 +67,7 @@ export class AppComponent implements OnInit {
           localStorage.setItem('token', response['token']);
           this.spinner = false;
           this.isLogged = true;
-          this.navegarPainel();
+          this.irParaMarcacoes();
         },
         error => {
           this.spinner = false;
@@ -158,8 +153,8 @@ export class AppComponent implements OnInit {
         );
     }
 
-    navegarPainel() {
-      this.router.navigate(['/painel']);
+    irParaMarcacoes() {
+      this.router.navigate(['/marcacao']);
     }
 
     esqueciSenha() {
@@ -181,4 +176,5 @@ export class AppComponent implements OnInit {
       );
     }
 
-  }
+
+}

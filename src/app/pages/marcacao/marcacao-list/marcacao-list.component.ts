@@ -72,7 +72,7 @@ export class MarcacaoListComponent implements OnInit {
         registro: item.codigo
       }
     });
-    this.fileService.exportAsExcelFile(json, 'registros');
+    this.fileService.exportAsExcelFile(json, 'registros_'+moment(new Date()).format('DD/MM/YYYY HH:mm:ss'));
  }
 
 

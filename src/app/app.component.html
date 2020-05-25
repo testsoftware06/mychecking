@@ -1,76 +1,10 @@
-<div class="container" *ngIf="!isLogged">
-  <div class="row">
-    <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
-      <div class="card card-signin my-5">
-        <div class="card-body">
-          <h5 class="card-title text-center mb-3">Login</h5>
-          <form [formGroup]="formLogin" (ngSubmit)="enviarDados()">
-            <div class="form-label-group">
-              <input type="text" id="login" formControlName="login" class="form-control" placeholder="Login">
-            </div>
-            <br>
-            <div class="form-label-group">
-              <input type="password" id="password" formControlName="password" class="form-control" placeholder="Senha">
-            </div>
-             <br>
-            <button [disabled]="!formLogin.valid" type="submit" class="btn btn-lg btn-primary btn-block">Logar</button>
-
-            <hr class="my-4">
-            <button type="button" data-toggle="modal" data-target="#modalesqueceusenha" class="btn btn-lg btn-secondary btn-block">Esqueci a senha</button>
-
-            <hr class="my-4">
-            <button type="button" data-toggle="modal" data-target="#modalnovousuario" class="btn btn-lg btn-warning btn-block">Cadastre-se</button>
-
-            <hr class="my-4">
-            <div *ngIf="erro">
-              <app-alert tipo="danger" mensagem="Falha ao fazer login"></app-alert>
-            </div>
-
-              <div class="text-center" *ngIf="spinner">
-                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                Aguarde...
-              </div>
-
-          </form>
-        </div>
-      </div>
-    </div>
+<app-nav></app-nav>
+  <div class="container-fluid">
+    <router-outlet></router-outlet>
   </div>
-</div>
+<app-rodape></app-rodape>
 
-<div  *ngIf="isLogged">
-  <nav class="navbar navbar-expand-lg navbar-light navbar-custom">
-
-    <a class="navbar-brand" routerLink="/painel">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  <!--
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/empresas">Empresas</a>
-        </li>
-        <li class="nav-item" routerLinkActive="active">
-          <a class="nav-link" routerLink="/usuarios">Usuários</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <button class="btn btn-danger" (click)="sair()" >Sair</button>
-        </li>
-      </ul>
-    </div> -->
-
-
-
-  </nav>
-    <div class="container mt-3">
-      <router-outlet></router-outlet>
-    </div>
-</div>
-
-<!--INICIO MODAL ESQUECE SENHA-->
+<!--INICIO MODAL ESQUECI SENHA
 <div>
   <div class="modal fade" id="modalesqueceusenha" tabindex="-1" role="dialog" aria-labelledby="modalEsqueciSenha" aria-hidden="true">
       <div class="modal-dialog" role="document">
@@ -104,9 +38,9 @@
       </div>
   </div>
 </div>
-<!--FIM MODAL ESQUECE SENHA-->
+FIM MODAL ESQUECE SENHA
 
-<!--INICIO MODAL CADASTRO NOVO USUARIO-->
+INICIO MODAL CADASTRO NOVO USUARIO
   <div class="modal fade" id="modalnovousuario" tabindex="-1" role="dialog" aria-labelledby="modalNovoUsuario" aria-hidden="true">
       <div class="modal-dialog" role="document">
           <div class="modal-content">
@@ -118,7 +52,7 @@
               </div>
               <div class="modal-body">
 
-                  <!--FORM USUARIO NOVO-->
+                  FORM USUARIO NOVO
                   <form [formGroup]="formUsuarioNovo" (ngSubmit)="enviarDadosCadastro()">
                     <div class="form-group">
                       <label for="new_nome">Nome</label>
@@ -135,7 +69,7 @@
                     <button [disabled]="!formUsuarioNovo.valid" type="submit" class="btn btn-lg btn-primary btn-block">Salvar</button>
                   </form>
 
-                  <!--FIM FORM USUARIO NOVO-->
+                  FIM FORM USUARIO NOVO
 
               </div>
 
@@ -164,6 +98,5 @@
       </div>
   </div>
 
-<!--FIM MODAL CADASTRO NOVO USUARIO-->
-
-  <app-rodape></app-rodape>
+FIM MODAL CADASTRO NOVO USUARIO
+-->
