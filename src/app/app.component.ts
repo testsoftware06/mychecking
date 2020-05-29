@@ -65,41 +65,6 @@ export class AppComponent implements OnInit {
     return userLogin;
   }
 
-
-    private requisicaoLogin(userLogin: Usuario) {
-      this.auth.logar(userLogin).subscribe(
-        response => {
-          localStorage.setItem('token', response['token']);
-          this.spinner = false;
-          this.isLogged = true;
-          this.navegarPainel();
-        },
-        error => {
-          this.spinner = false;
-          this.isLogged = false;
-          this.erro = error;
-          localStorage.removeItem('token');
-          this.resetFormLogin();
-        }
-        );
-      }
-
-    enviarDados() {
-      if (this.formLogin.valid) {
-        const userLogin: Usuario = this.createUserLogin();
-
-        this.spinner = true;
-
-        localStorage.removeItem('token');
-
-        this.erro = '';
-
-        this.requisicaoLogin(userLogin);
-      }
-      return;
-    }
-
-
     resetFormLogin() {
       this.formLogin.reset();
     }
@@ -161,7 +126,7 @@ export class AppComponent implements OnInit {
     navegarPainel() {
       this.router.navigate(['/painel']);
     }
-
+/*
     esqueciSenha() {
       this.auth.esqueciSenha(this.login).subscribe(
         () => {
@@ -180,5 +145,5 @@ export class AppComponent implements OnInit {
         }
       );
     }
-
+*/
   }

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../../shared-services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -8,6 +9,8 @@ import { Router } from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
+  isLogged = false;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -15,6 +18,7 @@ export class NavComponent implements OnInit {
       this.sair();
     }
   }
+
 
   sair() {
     localStorage.removeItem('token');

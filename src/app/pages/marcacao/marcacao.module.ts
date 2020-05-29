@@ -25,7 +25,7 @@ import { TagFormat } from './tag-format-pipe';
     Ng2SearchPipeModule,
     NgxPaginationModule,
     ReactiveFormsModule,
-    DlDateTimeDateModule,  // <--- Determines the data type of the model
+    DlDateTimeDateModule,
     DlDateTimePickerModule,
     FormsModule,
     ComponentSharedModule

@@ -10,17 +10,16 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { PainelComponent } from './pages/painel/painel.component';
 import { ComponentSharedModule } from './pages/component-shared/component-shared.module';
-import { LoginComponent } from './pages/login/login.component';
 import { NavComponent } from './pages/component-shared/nav/nav.component';
-
+import { AuthGuard } from './shared-services/auth.guard';
+import { LoginModule } from './pages/login/login.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PainelComponent,
-    NavComponent,
-    LoginComponent
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -28,9 +27,10 @@ import { NavComponent } from './pages/component-shared/nav/nav.component';
     ReactiveFormsModule,
     ComponentSharedModule,
     HttpClientModule,
+    LoginModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

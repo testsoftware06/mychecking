@@ -17,15 +17,15 @@
           <button type="button" data-toggle="modal" data-target="#modalesqueceusenha" class="btn btn-lg btn-link btn-block">Esqueci a senha</button>
 
           <hr class="my-4">
+
+          <div class="text-center" *ngIf="spinner">
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Aguarde...
+          </div>
+
           <div *ngIf="erro">
             <app-alert tipo="danger" mensagem="Falha ao fazer login"></app-alert>
           </div>
-
-            <div class="text-center" *ngIf="spinner">
-              <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-              Aguarde...
-            </div>
-
         </form>
       </div>
     </div>
@@ -52,7 +52,7 @@
               </div>
               <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" #modal data-dismiss="modal">Cancelar</button>
-                  <button type="button" class="btn btn-primary" (click)="esqueciSenha()">Enviar</button>
+                <!--  <button type="button" class="btn btn-primary" (click)="esqueciSenha()">Enviar</button> -->
               </div>
 
               <div *ngIf="statusEsqueceuSenhaErro">
